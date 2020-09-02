@@ -38,12 +38,12 @@ class User:
     def checkUser(self,key):
         qry="select username from users order by username "
         data=self.db.show_data(qry)
-        my_data=[]
-        for i in data:
-            my_data.append(i[0])
+        # my_data=[]
+        # for i in data:
+        #     my_data.append(i[0])
 
         # print(my_data)
-        if self.iterativeSearch(my_data,key)>=0:
+        if self.iterativeSearch(data,key)>=0:
             return True
         else:
             return False
@@ -54,10 +54,10 @@ class User:
         end=len(list)-1
         while start<=end:
             mid=(start+end)//2
-            if list[mid]==key:
+            if list[mid][0]==key:
                 return mid
             
-            elif list[mid]>key:
+            elif list[mid][0]>key:
                 end= mid - 1
             
             else:
