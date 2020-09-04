@@ -1,5 +1,4 @@
 import sys
-# import os
 
 from tkinter import *
 from PIL import ImageTk,Image
@@ -8,7 +7,6 @@ from ttkthemes import themed_tk as tk
 from tkinter import messagebox 
 from tkcalendar import DateEntry
 
-
 sys.path.append("D:/Second Semester/Algorithm/Assignment Draft/Classes")
 import Admn
 import Orders
@@ -16,31 +14,25 @@ import userMenu
 import userParking
 
 class placeOrder:
+    """This class contains method and attributes of the system that allows user to rent a car"""
     def __init__(self,user):
         self.wn=tk.ThemedTk()
-        # self.wn=Tk()
         self.wn.configure(bg="#6262ED")
-        self.wn.title("User")
+        self.wn.title("Rent a car")
         self.wn.geometry("650x450+200+50")
 
         self.item_index = ""
         self.my_index = 1
 
         self.user=user
-        # print(user)
-
-        # self.s = ttk.Style(self.wn)
-        # self.s.theme_use('clam')
-         
-
 
         self.wn.get_themes()
-        # self.s = ttk.Style(self.wn)
         self.wn.set_theme('plastik')
 
         self.item=Admn.Admin()
         self.order=Orders.Order()
 
+    #==========================Frame1==============================#
         self.frame1=Frame(self.wn)
         self.frame1.place(x=10,y=10)
         self.frame1.configure(bg="#6262ED")
@@ -49,18 +41,14 @@ class placeOrder:
         self.lbl_add=Label(self.frame1,font=("Calibri",14,"bold"),text="Address:",bg="#6262ED")
         self.lbl_add.grid(row=0,column=0)
 
-
         self.combo_tbl1 = ttk.Combobox(self.frame1, state='readonly',width=20)
         self.combo_tbl1.grid(row=0, column=1,padx=5)
         self.combo_tbl1['values'] = self.order.all_address()
 
-        # self.search_image=ImageTk.PhotoImage(Image.open("D:/Second Semester/Algorithm/python/Online/finalAssignment/images/search.png").resize((25,25)))
-        # self.btn1= Button(self.frame1,image=self.search_image,command=self.search )
-        # self.btn1.grid(row=0,column=2,padx=10)
-
         self.btn1 = Button(self.frame1, text='Search', font=('Calibri', 11,"bold"), fg="white",background='#6262ED',width=12, bd=1,command=self.search)
         self.btn1.grid(row=0,column=2,padx=10)
 
+    #==========================Frame2==============================#
         self.frame2=Frame(self.wn,bg="#6262ED")
         self.frame2.place(x=10,y=50)
 
@@ -82,7 +70,7 @@ class placeOrder:
 
         self.cars_tree.configure(yscrollcommand=self.vsb.set)
 
-
+      #==========================Frame3==============================#
         self.frame3=Frame(self.wn,bg="#6262ED")
         self.frame3.place(x=10,y=300)
 
@@ -123,12 +111,7 @@ class placeOrder:
         self.btn1.place(x=260,y=400)
 
         self.show_menu()
-
-        # self.search_image=ImageTk.PhotoImage(Image.open("D:/Second Semester/Algorithm/python/Online/finalAssignment/images/search.png").resize((25,25)))
-        # self.btn1= ttk.Button(self.frame1,image=self.search_image,command=self.search )
-        # self.btn1.grid(row=0,column=2,padx=10)
-        
-        
+                
         self.wn.mainloop()
 
     def search(self):
@@ -153,8 +136,6 @@ class placeOrder:
         self.ent_cmodel.insert(0, item_data[1])
         self.ent_cprice.delete(0, END)
         self.ent_cprice.insert(0, item_data[2])
-        # self.ent_caddress.delete(0, END)
-        # self.ent_caddress.insert(0, item_data[3])
         self.ent_cbrand.bind("<1>", self.entry_bind)
         self.ent_cmodel.bind("<1>", self.entry_bind)
         self.ent_cprice.bind("<1>", self.entry_bind)
@@ -171,9 +152,7 @@ class placeOrder:
         my_menu.add_cascade(label="Menu", menu=file_menu)
         file_menu.add_cascade(label="Parking",command=self.openParking)
         file_menu.add_cascade(label="History",command=self.openHistory)
-        file_menu.add_cascade(label="Log Out")
-        # file_menu.add_cascade(label="Exit")
-        # my_menu.configure(bg="#6262ED")
+        file_menu.add_cascade(label="Log Out",command=self.logOut)
 
     def submitOrder(self):
         cid=self.cars_tree.item(self.cars_tree.selection()[0], 'text')
@@ -195,14 +174,13 @@ class placeOrder:
         self.wn.destroy()
         iv=userParking.Parking(self.user)
 
+    def logOut(self):
+        ans=messagebox.askquestion("Log Out","Are you sure you want to log out?")
+        if ans=="yes":
+                self.wn.destroy()
+                import loginWn
+           
 
-# def main():
-#     wn=Tk()
-#     placeOrder(wn)
-#     wn.mainloop()
-
-# if __name__=="__main__":
-#     main()
 # iv=placeOrder()
 
 

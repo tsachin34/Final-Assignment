@@ -2,6 +2,8 @@ import mysql.connector
 
 
 class MyDb:
+    """This class contains methods that connect the system to the database
+     and executes queries """
     def __init__(self):
         self.my_connection = mysql.connector.connect(
         host='localhost',
@@ -19,12 +21,6 @@ class MyDb:
 
         except Exception as e :
             print(e)
-
-    
-    def test(self, qry, values):
-        self.my_cursor.execute(qry,values)
-        self.my_connection.commit()
-        return self.my_cursor.lastrowid
 
     def insert_with_id_return(self,qry,values):
         self.my_cursor.execute(qry,values)

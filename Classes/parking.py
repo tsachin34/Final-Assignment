@@ -1,13 +1,12 @@
 import connection
 
 class Park:
+    """This class performs the function of parking system"""
     def __init__(self):
         self.db = connection.MyDb()
 
     def add_spot(self,spot):
         self.__spot=spot
-       
-
         try:
             qry="insert into parking_detail(spot_no) values(%s)"
             values=(self.__spot)
@@ -66,11 +65,6 @@ class Park:
 
 
 
-# iv=Park()
-# if iv.spotUnavilable():
-#     print("No")
-# else:
-#     print("yes")
 
         
 

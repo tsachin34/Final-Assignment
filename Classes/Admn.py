@@ -2,6 +2,7 @@ import connection
 
 
 class Admin:
+    """This class contains the methods that is used by the admin of the system"""
     def __init__(self):
         self.db = connection.MyDb()
 

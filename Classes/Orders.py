@@ -1,6 +1,8 @@
 import connection
 
 class Order:
+    """The methods of this class saves and extracts 
+    all the orders placed by the user """
     def __init__(self):
         self.db=connection.MyDb()
 
@@ -10,7 +12,6 @@ class Order:
         self.__pdate=pdate
         self.__days=days
         self.__user=user
-        # self.__caddress=add
         try:
             qry = "INSERT INTO orders (username,cid, PickupDate, days) VALUES (%s,%s, %s, %s)"
             values = (self.__user,self.__cid,self.__pdate,self.__days)
@@ -20,9 +21,6 @@ class Order:
         except Exception as e:
             print(e)
             return False
-
-    # def delete_order(self):
-    #     pass
 
     def all_address(self):
         qry="select distinct caddress from cars"

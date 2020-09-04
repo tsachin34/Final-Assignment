@@ -14,6 +14,7 @@ from parking import *
 
 
 class parkDetails:
+    """The class is constructed to make a parking system that can be controlled by the admin"""
     def __init__(self):
         self.wn=tk.ThemedTk()
         # self.wn=Tk()
@@ -92,7 +93,6 @@ class parkDetails:
     def select_item(self, event):
         selected_item = self.details_tree.selection()[0]
         self.item_index = self.details_tree.item(selected_item, 'text')
-        print(self.item_index)
 
     def deleteBooking(self):
         index=self.item_index
@@ -106,7 +106,6 @@ class parkDetails:
 
     def mainMenu(self):
         self.wn.destroy()
-        # self.admin=adminWn.Cars()
 
 
 

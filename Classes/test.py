@@ -11,15 +11,14 @@ import userData
 
 class test(unittest.TestCase):
 
-
-
     def testAddcars(self):
-        
+        self.admin=Admn.Admin()
         actual_result= self.admin.addCars("test","test","1","test")
         self.assertTrue(actual_result)
         
 
     def testDeleteOrder(self):
+        self.admin=Admn.Admin()
         actual_result= self.admin.delete_order(1)
         self.assertTrue(actual_result)
 
@@ -27,7 +26,6 @@ class test(unittest.TestCase):
         self.admin = Admn.Admin()
         actual_result= self.admin.show_cars()
         self.assertTrue(actual_result)
-
 
     def testupdateItem(self):
         self.admin = Admn.Admin()
@@ -50,5 +48,5 @@ class test(unittest.TestCase):
 
 
 
-# iv=test()
-# iv.testShowCars()
+iv=test()
+iv.testShowCars()

@@ -1,12 +1,6 @@
 import connection
 class User:
-
-    # Username=""
-    # Name=""
-    # Address=""
-    # Phone=""
-    # Email=""
-    # type=""
+    """The methods of this class performs the function of User Registration"""
 
     def __init__(self):
         self.db=connection.MyDb()
@@ -36,18 +30,14 @@ class User:
 
 
     def checkUser(self,key):
+        """This method checks if the entered username is already registered or not
+        inorder to prevent duplicate usernames"""
         qry="select username from users order by username "
         data=self.db.show_data(qry)
-        # my_data=[]
-        # for i in data:
-        #     my_data.append(i[0])
-
-        # print(my_data)
         if self.iterativeSearch(data,key)>=0:
             return True
         else:
             return False
-
 
     def iterativeSearch(self,list,key):
         start=0
@@ -61,9 +51,7 @@ class User:
                 end= mid - 1
             
             else:
-                start= mid + 1
-                
+                start=mid+1
         return -1
-
-
+        
 
